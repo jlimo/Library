@@ -5,6 +5,9 @@ import Register from './components/Register';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './components/Home';
+import favorites from './components/favorites';
+
+
 
 class App extends Component {
   constructor() {
@@ -25,10 +28,11 @@ class App extends Component {
       this.setState({
       auth: res.auth,
       user: res.data.user,
+      })
     }).catch(err => console.log(err));
-    
+  }
 
-    handleLoginSubmit(e, data) 
+     handleLoginSubmit = (e, data) => { 
       e.preventDefault();
       fetch('/api/auth/login', {
         method:'POST',
@@ -36,25 +40,7 @@ class App extends Component {
           'Content-Type': 'application/json',
         },
         credentials: 'include',
-        body: JSON.stringify(data)
-      }).then(res => res.json())
-      .then(res => {
-        console.log(res);
-        this.setState({
-          auth: res.auth,
-          user: res.data.user,
-        })
-      }).catch(err => console.log(err));
-    
-    handleRegisterSubmit(e, data) 
-      e.preventDefault();
-      fetch('/api/auth/register', {
-        method:'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
       }).then(res => res.json())
       .then(res => {
         console.log(res);
@@ -64,6 +50,25 @@ class App extends Component {
         })
       }).catch(err => console.log(err));
     }
+
+    handleRegisterSubmit(e, data) {
+      e.preventDefault();
+      fetch('/api/auth/register', {
+        method:'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      }).then(res => res.json())
+      .then(res => {
+        console.log(res);
+        this.setState({
+          auth: res.auth,
+          user: res.data.user,
+        })
+      }).catch(err => console.log(err));
+    }
+
     logout() {
       fetch('/api/auth/logout', {
         credentials: 'include',
@@ -71,10 +76,10 @@ class App extends Component {
       .then(res => {
         this.setState({
           auth: res.auth,
-          user: res.data.user
         })
       }).catch(err => console.log(err));
-    
+    }
+
   render() {
     return (
     <Router>
@@ -97,6 +102,8 @@ class App extends Component {
                 ? <Redirect to='/login' />
                 : <Dashboard user={this.state.user} />
             )} />
+            <Route exact path='/library' />
+
           </div>
           <Footer />
         </div>
