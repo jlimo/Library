@@ -5,8 +5,8 @@ class Movie {
         this.id = id || null;
         this.title = title;
         this.description = description;
-        this.genre = genre;
         this.out = out;
+        this.image = text;
     }
 
     static getAll() {
@@ -27,8 +27,8 @@ class Movie {
         return db
         .one(
             `INSERT INTO books
-            (title, description, genre, out)
-            VALUES ($/title/, $description/, $/genre/, $/out/)
+            (title, description, out, image)
+            VALUES ($/title/, $description/, $/out/, $/image/)
             RETURNING *`,
             this
         )
@@ -42,8 +42,8 @@ class Movie {
             `UPDATE books SET 
             title = $/title/,
             description = $/description/,
-            genre = $/genre/
-            out = $/out/
+            out = $/out/,
+            image = $/image/,
             RETURNING *`,
             this
         )

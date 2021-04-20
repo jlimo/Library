@@ -12,3 +12,10 @@ CREATE TABLE IF NOT EXISTS books (
     image Text
 );
 
+CREATE TABLE IF NOT EXISTS collection (
+    collection_id SERIAL PRIMARY KEY,
+    name Varchar (30),
+    user_id INT REFERENCES users(id),
+    book_id INT REFERENCES books(id)
+
+)
