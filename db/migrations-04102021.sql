@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
     username VARCHAR(255) UNIQUE NOT NULL,
-    password_digest TEXT NOT NULL,
+    password_digest TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS books (
@@ -10,6 +10,5 @@ CREATE TABLE IF NOT EXISTS books (
     author VARCHAR(255),
     out BOOLEAN,
     image Text
-    user_id INT REFERENCES users(id)
 );
 
