@@ -28,8 +28,8 @@ libraryController.create = (req, res, next) => {
     new books({
         title: req.body.title,
         description: req.body.description,
-        genre: req.body.genre,
         out: req.body.out,
+        image: req.body.image,
     })
 
     libraryController.update= (req, res, next) => {
@@ -38,8 +38,8 @@ libraryController.create = (req, res, next) => {
             books.update({
                 title:req.body.title,
                 description: req.body.description,
-                genre: req.body.genre,
                 out: req.body.out,
+                image: req.body.image,
             })
             )
             .then((books) => {
@@ -56,7 +56,7 @@ libraryController.create = (req, res, next) => {
         books.getById(req.params.id)
         .then((books) => books.delete())
         .then(() => {
-            res.json({
+            res.json({ 
                 message: 'book deleted!',
             });
         })

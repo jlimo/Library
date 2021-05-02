@@ -43,7 +43,7 @@ app.use('*', (req, res) => {
 
 app.use((err, req, res, next) => {
     console.log(err);
-    res.sttus(500).json({
+    res.status(500).json({
         error: err,
         message: err.message,
     });
