@@ -1,8 +1,8 @@
 const express = require('express');
 const authRouter = express.Router();
-const passport = require('../services/auth-helpers');
+const passport = require('../services/passport');
 const authHelpers = require('../services/auth-helpers');
-const usersController = require('../users-controller');
+const usersController = require('../controllers/users-controller');
 
 authRouter.post('/register', usersController.create);
 
@@ -10,6 +10,7 @@ authRouter.post('/login', passport.authenticate('local', {
     successRedirect: '/api/auth/verify',
     failureRedirect: 'api/auth/verify',
     failureFlash: true,
+
 })
 );
 

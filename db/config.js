@@ -6,7 +6,7 @@ const options = {
 
 const pgp = require ('pg-promise')(options);
 
-function setBatabase() {
+function setDatabase() {
     if (process.env.NODE_ENV === 'development' || !process.env.NODE_ENV) {
         return pgp({
             database: 'dez_library',

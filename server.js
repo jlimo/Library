@@ -1,17 +1,20 @@
 const express = require('express');
 const logger = require('morgan');
+const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const passport = require('passport');
 
+const authRouter = require("./routes/auth-routes");
+const libraryRouter = require("./routes/library-routes");
 
 const app = express();
 require('dotenv').config();
 
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.bodyParser.json());
+app.use(express.bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(
     session({
@@ -21,6 +24,7 @@ app.use(
         saveUninitialized: true,
     }),
 );
+
 app.use(passport.initialize());
 app.use(passport.session());
 
