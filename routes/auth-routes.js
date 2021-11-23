@@ -1,8 +1,9 @@
 const express = require('express');
 const authRouter = express.Router();
-const passport = require('../services/passport');
+const passport = require('../services/local');
 const authHelpers = require('../services/auth-helpers');
 const usersController = require('../controllers/users-controller');
+
 
 authRouter.post('/register', usersController.create);
 
@@ -22,7 +23,7 @@ authRouter.get('verify', (req, res) => {
             user: req.user,
         }
     });
-    else return res.status(400).json({
+    else return res.json({
         message: 'Login failed',
         auth: false,
         data: {
@@ -31,7 +32,7 @@ authRouter.get('verify', (req, res) => {
     });
 });
 
-authRouter.get('/logout', (req,res) => {
+authRouter.get('/logout', (req, res) => {
     req.logout();
     res.json({
         message: 'logged out',

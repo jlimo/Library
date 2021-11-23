@@ -6,8 +6,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const passport = require('passport');
 
-const authRouter = require("./routes/auth-routes");
-const libraryRouter = require("./routes/library-routes");
+
 
 const app = express();
 require('dotenv').config();
@@ -38,6 +37,11 @@ app.listen(PORT, () => {
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
+
+const authRoutes = require('./routes/auth-routes');
+app.use('/api/auth', authRoutes);
+const libraryRoutes = require('./routes/library-routes');
+app.use('/api/library', libraryRoutes);
 
 app.use('*', (req, res) => {
     res.status(400).json({

@@ -1,6 +1,6 @@
 const db = require('../db/config');
 
-class Movie {
+class books {
     constructor({ id, title, author, description, genre, out}) {
         this.id = id || null;
         this.title = title;

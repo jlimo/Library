@@ -1,4 +1,5 @@
 const db = require('../db/config');
+const passport = require('../services/passport');
 
 class User {
     constructor({ id, username, password_digest }) {
