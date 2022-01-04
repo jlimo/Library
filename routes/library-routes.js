@@ -7,7 +7,7 @@ libraryRoutes.get('/', libraryController.index);
 libraryRoutes.post('/', libraryController.create);
 
 libraryRoutes.get('/:id', libraryController.show);
-libraryRoutes.put('/:id', libraryController.update);
+// libraryRoutes.post('/:id', libraryController.update);
 libraryRoutes.delete('/:id', libraryController.delete);
 
 module.exports = libraryRoutes;

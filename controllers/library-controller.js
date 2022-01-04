@@ -32,7 +32,7 @@ libraryController.create = (req, res, next) => {
         image: req.body.image,
     })
 
-    libraryController.update= (req, res, next) => {
+    libraryController.update = (req, res, next) => {
          books.getById(req.params.id)
             .then((books) => 
             books.update({
@@ -44,7 +44,7 @@ libraryController.create = (req, res, next) => {
             )
             .then((books) => {
                 res.json({
-                    message: 'Movie updated successfully!',
+                    message: 'Book updated successfully!',
                     data: { books },
                 });
             })
